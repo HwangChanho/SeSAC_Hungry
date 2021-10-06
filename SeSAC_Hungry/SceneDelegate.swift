@@ -9,14 +9,34 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    var window: UIWindow?
-
+    var window: UIWindow? // 맨 처음 뷰컨트롤러의 이벤트 관리 등 다양한 작업을 수행해준다.
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        guard let _ = (scene as? UIWindowScene) else { return } // 처음 보여줄 화면
+        
+        // 탭바
+        let tab = UITabBarController() // 탭바 객체 생성
+        
+        tab.view.backgroundColor = .white // default = black
+        self.window?.rootViewController = tab
+        
+        let view01 = ViewController()
+        let view02 = ViewController2()
+        let view03 = ViewController3() // 객체생성
+//        let view04 = ViewController3()
+//        let view05 = ViewController3()
+//        let view06 = ViewController3()
+//        let view07 = ViewController3()
+//        let view08 = ViewController3()
+//        let view09 = ViewController3()
+//        let view10 = ViewController3() // more 가 생기면서 메뉴가 자동으로 생성됨
+        
+        tab.setViewControllers([view01, view02, view03], animated: false)
+        
+        view01.tabBarItem = UITabBarItem(title: "test1", image: UIImage(named: "mono_baedal11")!.withRenderingMode(.alwaysOriginal), selectedImage: nil)
+        view02.tabBarItem = UITabBarItem(title: "test2", image: UIImage(named: "mono_baedal12")!.withRenderingMode(.alwaysOriginal), selectedImage: nil)
+        view03.tabBarItem = UITabBarItem(title: "test3", image: UIImage(named: "mono_baedal13")!.withRenderingMode(.alwaysOriginal), selectedImage: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -46,7 +66,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 
